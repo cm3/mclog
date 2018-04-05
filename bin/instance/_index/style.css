@@ -1,0 +1,148 @@
+body {
+  font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  letter-spacing: 0.08em;
+  background-color: #f2f3eb;
+}
+body a:link {
+  color: #2288AA;
+}
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6 {
+  font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  color: #3f2515;
+}
+body h1 {
+  padding: 5px;
+  margin: 50px 0 25px 0;
+  background-color: #f3d8b3;
+}
+body h2 {
+  border-bottom: 2px solid #3f2515;
+  border-left: 7px solid #f3d8b3;
+  padding: 5px;
+  margin: 50px 0 25px 0;
+}
+body h3 {
+  border-bottom: 4px solid #f3d8b3;
+  padding-left: 10px;
+}
+body h3,
+body h4,
+body h5,
+body h6 {
+  margin: 40px 0 25px 0;
+}
+body p {
+  /* margin: 0px 0; */
+  text-indent: 1em;
+}
+body blockquote {
+  margin: 25px 0;
+  padding-left: 20px;
+  border-left: 4px solid #ccc;
+  font-style: italic;
+  font-size: inherit;
+  line-height: 1.5;
+}
+body blockquote p {
+  font-size: inherit;
+}
+
+/* for tablesort */
+
+th.sort-header::-moz-selection { background:transparent; }
+th.sort-header::selection      { background:transparent; }
+th.sort-header { cursor:pointer; }
+table th.sort-header:after {
+  content:'';
+  float:right;
+  margin-top:7px;
+  border-width:0 4px 4px;
+  border-style:solid;
+  border-color:#404040 transparent;
+  visibility:hidden;
+  }
+table th.sort-header:hover:after {
+  visibility:visible;
+  }
+table th.sort-up:after,
+table th.sort-down:after,
+table th.sort-down:hover:after {
+  visibility:visible;
+  opacity:0.4;
+  }
+table th.sort-up:after {
+  border-bottom:none;
+  border-width:4px 4px 0;
+  }
+
+/* table */
+
+span.tag{
+	cursor: pointer;
+	background-color:#FFFFFF;
+	margin: 0px 3px;
+	padding: 0px 5px;
+	border-radius: 5px;
+}
+
+#newfileid{
+	margin: 0px 3px;
+	padding: 0px 5px;
+	border-radius: 5px;
+}
+
+.command{
+	text-decoration:none;
+	cursor: pointer;
+	background-color:#f3d8b3;
+	margin: 0px 3px;
+	padding: 0px 5px;
+	border-radius: 5px;
+}
+a.command:link{
+	color:black;
+}
+
+tr td:nth-child(2){
+	font-size:0.8em;
+}
+tr td:nth-child(3) a{
+    display: inline-block;
+    width: 35em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+ul.legend li{
+	list-style-type:none;
+	display:inline-block;
+}
+
+ul.legend li span{
+	height:27px;
+	display:inline-block;
+	vertical-align:bottom;
+}
+
+td > a.hidden{
+	visibility:hidden;
+}
+
+pre {
+    overflow: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+a#console_link{
+	background-color:black;
+	color:#EEEEEE;
+	padding:3px;
+	text-decoration:none;
+}
