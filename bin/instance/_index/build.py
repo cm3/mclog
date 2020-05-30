@@ -6,7 +6,11 @@ import sys
 
 def get_metadata(_jsonpath, _originalpath):
     if os.path.exists(_jsonpath):
-        jsondata = json.load(open(_jsonpath,"r",encoding="utf8"))
+        try:
+            jsondata = json.load(open(_jsonpath,"r",encoding="utf8"))
+        except:
+            print("failed to open: "+_jsonpath)
+            #exit()
         if jsondata["title"] == "":
             jsondata["title"] = "NO TITLE"
         jsondata["x-originalpath"] = os.path.abspath(_originalpath)
@@ -17,14 +21,16 @@ def get_metadata(_jsonpath, _originalpath):
 def build(_dirpath):
     dirlist = [path for path in glob.glob(_dirpath+"*")]
     alljsondata = []
-    ## copy directories, collect metadata from copied one, pandoc.
+    ## if directory is mlcontainer, collect metadata.
     for s in dirlist:
-        if os.path.isdir(s):
-            if mclib.is_mlcontainer(s):
-                alljsondata.append(get_metadata(mclib.get_metadatapath(s),s))
+        if mclib.is_mlcontainer(s):
+            alljsondata.append(get_metadata(mclib.get_metadatapath(s),s))
+        else:
+            pass
+            #print(s+" is skipped.")
 
-    ## sort with?(e.g. modified date = `key=lambda x:x["modified"], reverse=True)`)
-    alljsondata = sorted(alljsondata , key=lambda x:x["title"])
+    ## sort with?(e.g. modified date = `key=lambda x:x["modified"], reverse=True`)
+    alljsondata = sorted(alljsondata , key=lambda x:x["modified"], reverse=True)
 
     ## output all metadata as variable in .js
     with open(_dirpath+"data.js","w",encoding="utf8") as fw:
@@ -32,6 +38,7 @@ def build(_dirpath):
     return True
 
 if __name__ == "__main__":
+    print("build: "+sys.argv[1])
     if len(sys.argv) >= 2:
         build(sys.argv[1])
     else:

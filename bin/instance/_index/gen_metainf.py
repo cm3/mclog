@@ -20,8 +20,8 @@ def update_metadatajson(_dirpath):
     if not os.path.exists(rootmlpath):
         raise OSError("root markuped file not found.")
     if not "created" in jsondata_new:
-        jsondata_new["created"] = time.strftime("%Y-%m-%d %H:%M",time.localtime(os.path.getctime(rootmlpath)))
-    jsondata_new["modified"] = time.strftime("%Y-%m-%d %H:%M",time.localtime(mclib.get_latest_mtime(_dirpath)))
+        jsondata_new["created"] = time.strftime("%Y-%m-%d %H:%M:%S%z",time.localtime(os.path.getctime(rootmlpath)))
+    jsondata_new["modified"] = time.strftime("%Y-%m-%d %H:%M:%S%z",time.localtime(mclib.get_latest_mtime(_dirpath)))
     # print(_dirpath)
     # print(jsondata["modified"])
     #print(jsondata_new["modified"])

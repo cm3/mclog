@@ -4,6 +4,7 @@ import os.path
 import re
 import sys
 import subcommandr
+import urllib.parse
 
 def get_latest_mtime(_dirpath):
     latest_mtime = 0
@@ -13,7 +14,9 @@ def get_latest_mtime(_dirpath):
             latest_mtime = f_mtime
     return latest_mtime
 
-def is_mlcontainer(_dirpath): # check mimetype
+def is_mlcontainer(_dirpath): # check directory or not and mimetype
+    if not os.path.isdir(_dirpath):
+        return False
     mimetypepath = _dirpath+"/mimetype"
     if not os.path.exists(mimetypepath):
         return False
@@ -21,7 +24,7 @@ def is_mlcontainer(_dirpath): # check mimetype
         return fr.read().strip() == "application/x-ml-container"
     return False
 
-def is_mlcontainer_type(_dirpath, _type): # check mimetype of container and rootfile
+def is_mlcontainer_type(_dirpath, _type): # check mimetype of container and rootfile #???
     mimetypepath = _dirpath+"/mimetype"
     if not os.path.exists(mimetypepath):
         return False
@@ -71,7 +74,7 @@ def get_filespath(_dirpath, system_files=True):
 
 def get_assetstemplate(_dirpath):
     assetspath = get_filespath(_dirpath,system_files=False)
-    return "\n".join(["- ["+s+"]("+s+")" for s in assetspath])
+    return "\n".join([("- ["+s+"]("+urllib.parse.quote(s)+")" if (s[-5:] == ".html") or (s[-3:] == ".md") else "- `"+s+"`") for s in assetspath])
 
 if __name__ == "__main__":
     ## export functions

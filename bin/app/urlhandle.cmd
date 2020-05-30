@@ -4,6 +4,7 @@
 cd %~dp0
 set p=%~1%
 if "%~1" == "" goto error
+if not "%p:mclog://new/=%" == "%p%" (goto new)
 if not "%p:mclog://edit/=%" == "%p%" (goto edit)
 if not "%p:mclog://edit-metadata/=%" == "%p%" (goto editmetadata)
 if not "%p:mclog://dir/=%" == "%p%" (goto dir)
@@ -13,6 +14,11 @@ if not "%p:mclog://console/=%" == "%p%" (goto openconsole)
 :error
 echo "error. input is:">>mc.log
 echo %p%>>mc.log
+exit
+
+:new
+set p=%p:mclog://new/=%
+if exist %p% (goto error) else (mc-console.bat %p%)
 exit
 
 :edit
@@ -32,7 +38,8 @@ exit
 
 :createassetslist
 set p=%p:mclog://create-assets-list/=%
-python mclib.py get_assetstemplate %p% | clip
+python %p%/../_index/mclib.py get_assetstemplate %p% | clip
+pause
 exit
 
 :openconsole

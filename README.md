@@ -1,6 +1,6 @@
 ## About mclog
 
-This is an experimental implementation of offline blogging software based on `Markup Language file Container` (hereinafter called `mc`, the specification is under development.) file. `mc.html` can be used for web-archiving and `mc.markdown` can be used for offline blogging. This management software is developed for examining such possibilities.
+This is an experimental implementation of offline blogging software based on `Markup Language file Container` (hereinafter called `mc`, the specification is under development.) file. `html.mc` can be used for web-archiving and `markdown.mc` can be used for offline blogging. This management software is developed for examining such possibilities.
 
 ![](assets/README-e15e7.png)
 
@@ -22,6 +22,10 @@ Simply speaking, if you manage markdown files with images and metadata in the sa
 
 - Edit value of `[HKEY_CLASSES_ROOT\mclog\shell\open\command]` in `mclog.reg` to your `urlhandle.cmd` path.
 - Right click `mclog.reg` and perform `merge` (「結合」in Japanese)
+
+![](assets/README-e8e18.png)
+
+When you use click a `mclog://` handler for the first time, there can be popup like this. Click `Open the link`, `OK` or so.
 
 **Set an instance**
 

@@ -1,8 +1,17 @@
 @echo off
+setlocal enabledelayedexpansion
 
 :: first argument is path
 
 IF NOT EXIST "%~1%" (
+echo not implemented.
+echo "%~1%"
+set command=new "%~1%"
+echo !command!
+set /p yn="Issue the command above?: "
+if /i !yn!==y (goto new)
+if /i !yn!==yes (goto new)
+pause
 exit
 ) else (
 cd "%~1%"
@@ -37,10 +46,12 @@ IF "%command%" == "new" goto help
 
 echo create new Markdown Container here.
 set title=%command:new =%
+echo %title%
+pause
 
 IF EXIST "%title%" (
 echo ERROR: directory "%title%" is already exist.
-goto :input
+goto input
 ) else (
 mkdir %title%
 echo # %title%>%title%\index.md

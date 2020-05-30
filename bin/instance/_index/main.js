@@ -130,8 +130,8 @@ window.onload = function(){
         let tr1=document.createElement('tr');
         tr1.setAttribute('id',String(i));
         //console.log(data[i]["x-originalpath"].replace(/\\/g,"/"));
-        tr1.innerHTML = "<td>"+data[i]["modified"]+"</td>";
-        tr1.innerHTML += "<td>"+data[i]["created"]+"</td>";
+        tr1.innerHTML = "<td>"+data[i]["modified"].slice(0,-8)+"</td>";
+        tr1.innerHTML += "<td>"+data[i]["created"].slice(0,-8)+"</td>";
         tr1.innerHTML += "<td><a href=\""+data[i]["x-originalpath"].replace(/\\/g,"/")+"/index.md\">"+data[i]["title"]+"</a></td>";
         tr1.innerHTML += "<td><a href=\"mclog://edit/"+data[i]["x-originalpath"].replace(/\\/g,"/")+"\""+getEditClass(data[i]["rootfile"]["media-type"])+"><img src=\"./_index/edit.png\" /></a> <a href=\"mclog://edit-metadata/"+data[i]["x-originalpath"].replace(/\\/g,"/")+"\"><img src=\"./_index/tag.png\" /></a> <a href=\"mclog://dir/"+data[i]["x-originalpath"].replace(/\\/g,"/")+"/\"><img src=\"./_index/folder.png\" /></a> <a href=\"mclog://create-assets-list/"+data[i]["x-originalpath"].replace(/\\/g,"/")+"\"><img src=\"./_index/list.png\" /></a></td>"+gentd_tag(data[i]["tags"]);
         tbody.appendChild(tr1)
