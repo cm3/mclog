@@ -61,6 +61,7 @@ const enableTagClick = function(){
         tags[i].onclick = function(){
             //console.log(this);
             showByIdlist(getIdlistByTagnames([this.textContent]));
+            location.hash = "#"+this.textContent;
             return false;
         }
     }
@@ -132,7 +133,7 @@ window.onload = function(){
         //console.log(data[i]["x-originalpath"].replace(/\\/g,"/"));
         tr1.innerHTML = "<td>"+data[i]["modified"].slice(0,-8)+"</td>";
         tr1.innerHTML += "<td>"+data[i]["created"].slice(0,-8)+"</td>";
-        tr1.innerHTML += "<td><a href=\""+data[i]["x-originalpath"].replace(/\\/g,"/")+"/index.md\">"+data[i]["title"]+"</a></td>";
+        tr1.innerHTML += "<td><a href=\""+data[i]["x-originalpath"].replace(/\\/g,"/")+"/"+data[i]["rootfile"]["path"]+"\">"+data[i]["title"]+"</a></td>";
         tr1.innerHTML += "<td><a href=\"mclog://edit/"+data[i]["x-originalpath"].replace(/\\/g,"/")+"\""+getEditClass(data[i]["rootfile"]["media-type"])+"><img src=\"./_index/edit.png\" /></a> <a href=\"mclog://edit-metadata/"+data[i]["x-originalpath"].replace(/\\/g,"/")+"\"><img src=\"./_index/tag.png\" /></a> <a href=\"mclog://dir/"+data[i]["x-originalpath"].replace(/\\/g,"/")+"/\"><img src=\"./_index/folder.png\" /></a> <a href=\"mclog://create-assets-list/"+data[i]["x-originalpath"].replace(/\\/g,"/")+"\"><img src=\"./_index/list.png\" /></a></td>"+gentd_tag(data[i]["tags"]);
         tbody.appendChild(tr1)
     }
@@ -140,5 +141,17 @@ window.onload = function(){
     enableTagClick();
     addSpecialTagButton();
     //default view is "show all except * tags". see addSpecialTagButton function.
-    hideByIdlist(getIdlistByTagnames(["*archived","*abandoned","*wanna"]));
+    if (location.hash){
+      showByIdlist(getIdlistByTagnames(window.location.hash.slice(1)));
+    }else{
+      hideByIdlist(getIdlistByTagnames(["*archived","*abandoned","*wanna"]));
+    }
 }
+
+window.addEventListener('hashchange', function(e) {
+  if(location.hash){
+    showByIdlist(getIdlistByTagnames(window.location.hash.slice(1)));
+  } else {
+    hideByIdlist(getIdlistByTagnames(["*archived","*abandoned","*wanna"]));
+  }
+},false);

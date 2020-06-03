@@ -8,7 +8,7 @@ import urllib.parse
 
 def get_latest_mtime(_dirpath):
     latest_mtime = 0
-    for f in get_filespath(_dirpath): #
+    for f in get_filespath(_dirpath, False): #
         f_mtime = os.path.getmtime(_dirpath+f)
         if latest_mtime < f_mtime:
             latest_mtime = f_mtime

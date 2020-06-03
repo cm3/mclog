@@ -39,7 +39,6 @@ exit
 :createassetslist
 set p=%p:mclog://create-assets-list/=%
 python %p%/../_index/mclib.py get_assetstemplate %p% | clip
-pause
 exit
 
 :openconsole
